@@ -294,4 +294,37 @@ vi index.html
 
 ## 3. Security Group 실습
 
+- Security Group 생성하기
+  - 여러 포트와 소스를 지정해서 만들기
+- 기존의 적용된 SG를 새로운 SG로 대체하기
+  - 기존의 EC2의 환경에서 어떻게 변화되었는지 확인 
+
+1. 인스턴스 시작하기
+2. 나의 AMI 선택 
+3. 인스턴스 유형 t2.micro선택
+4. 다음: 스토리지 추가 버튼 클릭
+5. GIB 10으로 설정후 다음:태그 추가 버튼 클릭
+6. Name: lecture-test 태그추가 후 다음:보안 그룹 구성 버튼 클릭 
+7. 보안그룹 구성
+![image](https://user-images.githubusercontent.com/28394879/136937587-a4f8a115-07da-412d-8b5a-8147f9c66cfa.png)
+8. 시작하기
+9. 기존 키 페어 선택 후 인스턴스 시작 
+
+### 아웃바운드 실습 
+1. 아웃바운드 규칙 
+![image](https://user-images.githubusercontent.com/28394879/136938194-a360f828-9999-4a88-9ff0-0190804c89e4.png)
+2.  Edit outbound rules 버튼 클릭
+3.  기존에 있는 outbound 삭제 후 규칙저장
+4.  lecture-test2 ip로 접속해보았지만 아웃바운드 규칙이 없음에도 불구하고 접속 이 잘 됨 ==> stateful 특징 덕분에 
+
+
+### 인바운드 실습
+1. 보안그룹 -> 인바운드 규칙 
+2. Edit inbound rules 버튼 클릭
+3. SSH 제외한 모든 inbound 제거 후 규칙저장
+4. lecture-test2 ip로 접속해보았지만, 접속이 안되는것을 알 수 있음
+
+
+
+
 </details>
