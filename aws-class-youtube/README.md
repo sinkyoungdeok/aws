@@ -130,3 +130,23 @@ vi index.html
 
 
 </details>
+
+
+
+# 2. EC2 기초(2) 
+
+<details> <summary> 1. EC2 와 다른 AWS 서비스들 </summary>
+
+</details>
+
+<details> <summary> 2. DBS/Instance Storage </summary>
+
+</details>
+
+<details> <summary> 3. AMI </summary>
+
+</details>
+
+<details> <summary> 4. AMI를 통한 Backup/Scale Up 실습 </summary>
+
+</details>
