@@ -244,3 +244,54 @@ vi index.html
 - 새로운 인스턴스의 아이피로 접속해보면 이전에 만들어 두었던 helloworld apache 서버가 잘 동작 하는 것을 알 수 있다.
 
 </details>
+
+
+# 3. Security Group
+
+<details> <summary> 1. Security Group 란 무엇인가? </summary>
+
+## 1. Security Group 란 무엇인가?
+
+![image](https://user-images.githubusercontent.com/28394879/136934211-085a6871-2ff6-423d-b208-88e55945c45f.png)
+
+- 보안그룹은 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽 역할을 한다.
+- VPC에서 인스턴스를 시작 할 때 최대 5개의 보안 그룹에 인스턴스를 할당할 수 있다.
+- 보안 그룹은 **서브넷 수준이 아니라 인스턴스 수준에서 작동**하므로 VPC에 있는 서브넷의 각 인스턴스를 서로 다른 보안 그룹 세트에 할당할 수 있다.
+- 시작 할 때 특정 그룹을 지정하지 않으면 인스턴스가 자동으로 VPC의 기본 보안 그룹에 할당된다.
+
+</details>
+
+<details> <summary> 2. Security Group 특징 </summary>
+
+## 2. Security Group 특징
+
+- 보안 장치
+  - Network Access List(NACL)와 함께 방화벽의 역할을 하는 서비스
+- Port 허용
+  - 트래픽이 지나갈 수 있는 Port와 Source를 설정 가능
+  - Deny는 불가능 -> NACL 로 가능 
+- 인스턴스 단위
+  - 하나의 인스턴스에 하나 이상의 SG설정 가능
+  - NACL의 경우 서브넷 단위
+  - 설정된 Instance는 설정한 모든 SG의 룰을 적용 받음
+
+
+![image](https://user-images.githubusercontent.com/28394879/136935520-e5b45cb7-28e1-48e6-863f-02572c399284.png)
+
+- 설정된 모든 룰을 사용해서 필터링
+  - NACL의 경우 적용된 룰의 순서대로 필터링 
+- Stateful  
+  - Inbound로 들어온 트래픽이 별 다른 Outbound 설정 없이 나갈 수 있음
+  - NACL은 Stateless
+
+![image](https://user-images.githubusercontent.com/28394879/136936301-7550285b-8c2a-4428-9414-d4072812e38b.png)
+
+![image](https://user-images.githubusercontent.com/28394879/136936510-05742607-16dc-4031-b1b4-972aa13cad5e.png)
+
+</details>
+
+<details> <summary> 3. Security Group 실습 </summary>
+
+## 3. Security Group 실습
+
+</details>
