@@ -334,20 +334,131 @@ vi index.html
 
 <details> <summary> 1. ELB란 무엇인가? </summary>
 
+## 1. ELB란 무엇인가?
+![image](https://user-images.githubusercontent.com/28394879/137287365-896396b6-3eca-4894-afd1-6c1750340e39.png)
+
+### 용어 
+- Elastic Load Balancer
+
+### 정의
+- Elastic Load Balancing은 들어오는 애플리케이션 트래픽을 Amazon EC2 인스턴스, 컨테이너, IP 주소, Lambda 함수와 같은 여러 대상에 자동으로 분산시킨다.
+- Elastic Load Balancing은 단일 가용 영역 또는 여러 가용 영역에서 다양한 애플리케이션 부하를 처리할 수 있다.
+- Elastic Load Balancing이 제공하는 세 가지 로드 밸런서는 모두 애플리케이션의 내결함성에 필요한 **고가용성, 자동 확장/축소, 강력한 보안**을 갖추고 있다.
+
+### Vertical Scale
+![image](https://user-images.githubusercontent.com/28394879/137288267-d5a5a8b8-4907-44d1-9bcd-12a13be07bf1.png)
+
+![image](https://user-images.githubusercontent.com/28394879/137288362-b1ce0bd9-4d9a-44b2-a8ee-ed6b544915a2.png)
+
+### Horizontal Scale
+![image](https://user-images.githubusercontent.com/28394879/137288510-7d1db362-be70-4dce-b59e-9c5bfe216d33.png)
+
+![image](https://user-images.githubusercontent.com/28394879/137288634-1ed44f9c-a25e-41b1-a928-b698d694d0c2.png)
+
+
 </details>
 
 <details> <summary> 2. ELB의 특징 </summary>
+
+## 2. ELB의 특징
+
+- IP가 지속적으로 바뀜
+  - 지속적으로 IP 주소가 바뀜
+  - 따라서 도메인 기반으로 사용해야 함
+- Health Check
+  - 직접 트래픽을 발생시켜 Instance가 살아있는지를 체크함
+  - InService, OutofService 두가지 상태로 나누어짐 
+- 3가지 종류가 존재함
+  - Application Load Balancer
+  - Network Load Balancer
+  - Classic Load Balancer
+
+
 
 </details>
 
 <details> <summary> 3. ELB의 종류 </summary>
 
+## 3. ELB의 종류
+
+### Application Load Balancer
+- Application Level
+- "똑똑한 놈"
+
+### Network Load Balancer
+- "빠른놈"
+- Elastic IP 할당 가능 
+
+### Classic Load Balancer
+- "옛날놈"
+- 요즘은 잘 안씀 
+
+
 </details>
 
 <details> <summary> 4. Sticky Session </summary>
 
+## 4. Sticky Session
+
+![image](https://user-images.githubusercontent.com/28394879/137290519-58ba8dec-02b3-400a-8973-20412d1fcc0b.png)
+- 2개이상의 Instance가 있다고 했을때 A Instance의 웹서버에 로그인을하면 Session이 하나 발급될 것이다.
+- 그런데, 한번더 요청을 했을때 B Instance의 웹서버에 요청하느라 Session이 없어 재로그인을 하라고 요청을 할 것이다.
+- 이 것을 방지하기 위해 나온 것이 Sticky Session이다.
+- Sticky Session은 사용자마다 어떤 인스턴스에 접근했는지를 저장해두고 다음번의 요청시에 해당하는 인스턴스로 접속할 수 있도록 해주는 것이다.
+
+
+
+
+
 </details>
 
 <details> <summary> 5. ELB 실습 </summary>
+
+## 5. ELB 실습
+
+- 2개의 다른 AZ에 웹서버 생성하기
+  - 2개의 웹서버를 생성하고 각각 AZ를 알 수 있도록 내용을 표시
+- Application LoadBalancer를 적용해 트래픽이 분산되는지 확인하기
+  - 매번 갱신때마다 다른 AZ로 표시되는지 확인하기
+- Sticky Session 확인
+  - Sticky Session이 동작하는지 확인하기 
+
+
+1. 인스턴스 시작
+2. 나의 AMI중에 lecture-test 선택
+3. t2.micro InstanceType 선택
+4. 서브넷설정을 2a로 설정
+5. 태그 Name: InstanceA
+6. 보안그룹 까지 다음
+7. lecture-test 보안그룹 선택
+8. "마그네틱을 이 인스턴스의 부트 볼륨으로 계속 사용" 선택
+9. 1~7번 한번더 반복해서 서브넷설정을 2c로 새로 인스턴스 생성 
+10. InstanceA, InstanceC 에 각각 접속해서 /var/www/html/index.html을 I am instance A, I am instance C로 변경 
+11. 로드밸런서 -> Load balancer 생성 
+12. Application Load Balancer Create 
+13. 이름, Network mapping 설정 
+![image](https://user-images.githubusercontent.com/28394879/137293757-1e2c63e0-33f1-4016-b25d-54389c486b4e.png)
+
+14. Security groups 설정
+![image](https://user-images.githubusercontent.com/28394879/137294000-9675bd37-49e6-41eb-8549-705f491bc18f.png)
+
+
+15. Listeners and routing에서 Create target group버튼 클릭
+16. Basic configuration (사진은 잘못됐고, Target Type을 Instance로 해야됨)
+![image](https://user-images.githubusercontent.com/28394879/137294674-2f4f9d1a-7db9-4228-89aa-afecf7d2c530.png)
+
+17. Health checks
+![image](https://user-images.githubusercontent.com/28394879/137294844-cae94995-fe02-4fa7-8959-29913f264fa5.png)
+
+18. target을 instanceA,C 으로 등록
+
+19. 방금 만든 target group 선택후 create Load balancer
+20. 로드밸런서의 DNS이름으로 접속 시도 -> A, C 계속 번갈아 뜨는것을 확인 
+
+
+
+
+
+
 
 </details>
