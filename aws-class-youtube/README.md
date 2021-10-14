@@ -328,3 +328,26 @@ vi index.html
 
 
 </details>
+
+
+# 4. ELB
+
+<details> <summary> 1. ELB란 무엇인가? </summary>
+
+</details>
+
+<details> <summary> 2. ELB의 특징 </summary>
+
+</details>
+
+<details> <summary> 3. ELB의 종류 </summary>
+
+</details>
+
+<details> <summary> 4. Sticky Session </summary>
+
+</details>
+
+<details> <summary> 5. ELB 실습 </summary>
+
+</details>
