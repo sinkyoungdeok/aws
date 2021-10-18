@@ -455,6 +455,13 @@ vi index.html
 19. 방금 만든 target group 선택후 create Load balancer
 20. 로드밸런서의 DNS이름으로 접속 시도 -> A, C 계속 번갈아 뜨는것을 확인 
 
+21. 대상 그룹에서 방금 지정한 lecture-test2 그룹에서 Attribute선택
+22. Attribute Edit
+23. Stickiness enable 후 저장 
+![image](https://user-images.githubusercontent.com/28394879/137296411-f7e0673e-0d49-4b22-9e0b-f26a3e73caea.png)
+24. DNS로 접속해보면 10초동안은 같은 서버로 접속되는것을 확인
+
+
 
 
 
