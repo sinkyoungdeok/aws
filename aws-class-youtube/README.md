@@ -546,4 +546,36 @@ vi index.html
 4. 생성된 버킷 클릭
 5. 업로드 -> index.html 업로드 
 
+
+### 3. Auto Scaling 생성
+1. EC2 서비스
+2. Auto Scaling -> 시작 구성 
+3. 시작 구성 생성
+4. 시작 구성 이름: as-test
+5. AMI 아무거나 선택
+6. 인스턴스: t2.micro
+7. 추가구성 - 선택사항 -> IAM 인스턴스: s3_fullaccess_as_test
+8. 추가구성 - 선택사항 -> 고급 세부 정보
+![image](https://user-images.githubusercontent.com/28394879/137883117-d5d701d1-90b4-4b5e-8834-4b94a09aaa8a.png)
+9. 스토리지: 마그네틱(표준)
+10. 보안그룹: 기존 보안그룹 (default로 만든거 아무거나)
+11. 키 페어: 기존 키페어
+12. 생성완료
+
+### 4. Load Balancer 생성 
+1. 로드밸런서 -> Load Balancer 생성
+2. Application Load Balancer 
+3. 이름: as-test-elb
+4. 가용영역: 2a, 2c -> 다음
+5. 다음
+6. 보안그룹: 기존 보안 그룹 
+7. 라우팅구성 
+![image](https://user-images.githubusercontent.com/28394879/137885653-6b053f3c-da49-4545-a8de-8435308b6808.png)
+8. 다음, 다음 생성 완료 
+
+### 5. Auto Scaling 그룹 생성
+1. Auto Scaling -> Auto Scaling 그룹 
+2. Auto Scaling 그룹 생성 
+3. 
+
 </details>
