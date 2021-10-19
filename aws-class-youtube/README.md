@@ -469,3 +469,81 @@ vi index.html
 
 
 </details>
+
+
+
+
+# 5. Auto Scaling
+
+<details> <summary> 1. Autoscaling 이란 무엇인가 </summary>
+
+## 1. Autoscaling 이란 무엇인가
+
+- AWS Auto Scaling은 애플리케이션을 모니터링하고 용량을 자동으로 조정하여, **최대한 저렴한 비용으로 안정적**이고 예측 가능한 성능을 유지한다.
+- AWS Auto Scaling을 사용하면 몇 분 만에 손쉽게 여러 서비스 전체에서 여러 리소스에 대해 애플리케이션 규모 조정을 설정 할 수 있다.
+
+![image](https://user-images.githubusercontent.com/28394879/137873154-df8c7c15-d8a4-4c0c-9d71-2387331edfd4.png)
+
+
+</details>
+
+<details> <summary> 2. Autoscaling 의 활용 </summary>
+
+## 2. Autoscaling 의 활용
+
+- 최소한의 인스턴스 사용
+- 원하는 만큼의 인스턴스 개수를 목표로 유지
+- 최대 인스턴스 개수 이하로 인스턴스를 유지
+- Availability Zone 에 골고루 분산될 수 있도록 인스턴스를 분배
+- 항상 서비스가 유지될 수 있는 인스턴스를 확보 
+
+### EC2 Auto Scaling의 구성
+- Launch Configuration: 무엇을 어떻게 실행시킬 것인가?
+  - EC2의 타입, 사이즈
+  - AMI
+  - Security Group, Key, IAM
+  - User Data
+- Monitoring: 언제 실행시킬 것인가? + 상태 확인
+  - 예: CPU 점유율이 일정 %을 넘어섰을 때 추가로 실행 or 2개 이상이 필요한 스택에서 EC2 하나가 죽었을 때
+  - Cloud Watch (And/Or) ELB 와 연계
+- Desired Capacity: **얼만큼** 실행 시킬 것인가?
+  - 예: 최소 1개 ~ 최대 3개
+- Lifecycle Hook: 인스턴스 시작/종료 시 Callback
+  - 다른 서비스와 연계하여 전/후 처리 가능 -> CloudWatch Event/SNS/SQS
+  - Terminating: wait/Terminating: Proceed 상태로 전환
+  - 기본 3600초 동안 기다림 ( 기다리는 동안 이미지 백업이나 로그 백업 등의 작업을 할 수 있게끔 )
+
+### EC2 Auto Scaling의 순서도
+![image](https://user-images.githubusercontent.com/28394879/137876824-8fb023db-f32b-4959-93c4-a1c930bf792f.png)
+
+
+</details>
+
+<details> <summary> 3. Autoscaling 실습 </summary>
+
+## 3. Autoscaling 실습
+
+- Auto Scaling group 생성
+  - Launch Configuration(web서버) 및 Capacity 설정
+- 인스턴스 변화에 따른 Autoscaling 적용 확인
+  - 인스턴스가 종료되었을 때 어떻게 변화하는지 확인 
+
+
+### 1. IAM 생성
+1. IAM 서비스 
+2. 액세스 관리 -> 역할 
+3. 역할 만들기 
+4. EC2 클릭 후 다음
+5. 정책 필터에 "S3" 검색 후 "AmazonS3FullAccess" 선택 후 다음
+6. 태그 "purpose : lecture_as_test" 생성 후 다음 
+7. 역할이름: s3_fullaccess_as_test, 역할설명: 역할이름과 동일 입력 후 만들기 
+
+
+### 2. S3 버킷 생성 
+1. S3 서비스 
+2. 버킷 -> 버킷 만들기 
+3. 버킷이름: 맘대로 ( 글로벌한 유니크한 이름이라서 각자 지으면됨: skd-dte-as-test ) 지정 후 생성 
+4. 생성된 버킷 클릭
+5. 업로드 -> index.html 업로드 
+
+</details>
