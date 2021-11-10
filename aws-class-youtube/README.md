@@ -397,6 +397,9 @@
 
 ### Bastion Host
 
+![image](https://user-images.githubusercontent.com/28394879/141087702-b6cdb535-04ea-4c4a-8624-3cf642539183.png)
+
+
 - Private Instance 에 접근하기 위한 Instance 
 - Public Subnet에 위치해야 함
 
