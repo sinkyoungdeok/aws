@@ -384,4 +384,21 @@
 - 트래픽이 어디로 가야 할지 알려주는 이정표
 - 기본적으로 VPC 생성시 만들어줌 
 
+
+### NAT Instance/NAT Gateway
+
+![image](https://user-images.githubusercontent.com/28394879/141087041-97f1c809-eb26-4950-88ea-5b900c7637e6.png)
+
+- Private Instance가 외부의 인터넷과 통신하기 위한 통로 
+- NAT Instance는 단일 Instance / NAT Gateway는 AWS에서 제공하는 서비스
+- NAT Instance를 사용할 때 Source/Destination Check을 해제해야 함 
+- NAT Instance는 Public Subnet에 있어야 함
+
+
+### Bastion Host
+
+- Private Instance 에 접근하기 위한 Instance 
+- Public Subnet에 위치해야 함
+
+
 </details>
