@@ -335,8 +335,53 @@
 
 <details> <summary> 2. VPC의 구성요소 </summary>
 
-</details>
+## 2. VPC의 구성요소
 
-<details> <summary> 3. VPC 만들기 실습 </summary>
+![image](https://user-images.githubusercontent.com/28394879/141058705-4ac55134-69e5-441a-b1ba-3b4f71c90e28.png)
+
+1. **A**vailability **Z**one
+2. Subnet
+3. **I**nternet **G**ate **W**ay
+4. **N**etwork **A**ccess **C**ontrol **L**ist/Secuirty Group
+5. Route Table
+6. **N**etwork **A**ddress **T**ranslation Instance/NAT Gateway
+7. Bastion Host
+8. VPC Endpoint
+
+
+### Availability Zone
+- 물리적으로 분리되어 있는 인프라가 모여 있는 데이터 센터
+- 고가용성을 위해서 항상 일정 거리 이상 떨어져 있음
+- 하나의 리전은 2개 이상의 AZ로 이루어져 있음 
+  - 계정 1의 AZ-A는 계정 2의 AZ-A와 다른곳에 있음 
+
+![image](https://user-images.githubusercontent.com/28394879/141059214-0bf68399-1fb8-4a6e-9b75-83d29d2cb893.png)
+
+### Subnet
+- VPC의 하위 단위
+- 하나의 AZ에만 생성 가능: 다른 AZ로 확장 불가 
+  - 하나의 AZ에는 여러 Subnet 생성 가능 
+- Private Subnet: 인터넷에 접근 불가능한 Subnet
+- Public Subnet: 인터넷에 접근 가능한 Subnet
+- CIDR block range 설정 가능 
+
+### Internet Gateway(IGW)
+- 인터넷으로 나가는 경로 
+- 고가용성이 확보되어 있음 
+- IGW로 연결되어 있지 않은 서브넷=Private Subnet
+- Route Table에서 연결해줘야 함
+
+
+### NACL/Security Group
+- 검문소
+- NACL => Stateless, SG => Stateful
+- 기본적으로 VPC 생성시 만들어줌
+- Deny는 NACL에서만 가능
+
+### Route Table
+![image](https://user-images.githubusercontent.com/28394879/141064479-4e31b75a-e564-40a1-8574-306f150a2def.png)
+
+- 트래픽이 어디로 가야 할지 알려주는 이정표
+- 기본적으로 VPC 생성시 만들어줌 
 
 </details>
