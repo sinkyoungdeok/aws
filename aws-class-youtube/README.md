@@ -62,77 +62,6 @@
 
 </details>
 
-<details> <summary> 4. EC2로 웹서버 만들기 실습 </summary>
-
-## 4. EC2로 웹서버 만들기 실습 
-
-### EC2 만들기
-- EC2 설정하기 -> AMI, 타입, 세부설정, 보안그룹, 키 발급
-- 실행
-
-
-**상세 방법**
-1. aws 홈페이지 접속
-2. 서비스 
-3. EC2 
-4. 인스턴스 시작 
-5. Amazon Linux 2 AMI (HVM), SSD Volume Type(x86) 선택 
-6. 프리티어 사용가능 선택, 다음: 인스턴스 세부 정보 구성 클릭 
-7. 서브넷 설정 후 다음: 스토리지 추가 클릭
-![image](https://user-images.githubusercontent.com/28394879/136487665-d746c5e5-c894-4719-83f1-cad9bfcdbacf.png)
-
-
-8. 볼륨 유형 선택후 다음: 태그 추가 클릭
-![image](https://user-images.githubusercontent.com/28394879/136487835-473944a6-53e6-4de0-9bb4-e68ba2aed85c.png)
-
-
-
-9. 태그 설정 후 다음: 보안그룹 구성 클릭
-![image](https://user-images.githubusercontent.com/28394879/136489136-a41f5e89-b804-4738-996d-9b83b250cc6d.png)
-
-10. 보안그룹 설정 후 검토 및 시작 클릭
-![image](https://user-images.githubusercontent.com/28394879/136489337-1289fbbb-23a4-47e1-80f9-b26b8778e540.png)
-
-
-11. 범용(SSD)에서 부팅을 마그네틱을 이 인스턴스의 부트 볼륨으로 계속 사용 클릭 후 다음 
-12. 시작하기 클릭
-13. 새 키페어 다운로드 후 인스턴스 시작 
-![image](https://user-images.githubusercontent.com/28394879/136489509-f63cd8c7-74a8-443f-abf7-e9625acb8d3d.png) 
-
-
-### EC2에 접속
-- Putty Gen을 통해 PPK파일 만들기
-- Putty를 통해 접속하기
-- FileZila를 통해 FTP 접속하기
-
-```
-chmod 400 lecture-test.pem
-ssh -i "lecture-test.pem" ec2-user@ec2-{ip}.us-east-2.compute.amazonaws.com
-```
-
-
-### 웹서버 설치 및 구동
-- Yum을 통해 아파치 설치
-- Httpd 서비스 등록
-- 새로운 인트로 페이지 생성
-
-```
-sudo -s
-yum install httpd -y
-service httpd start
-chkconfig httpd on
-cd /var/www/html
-vi index.html
-```
-
-- index.html 파일 완성 후 http://{ip}/ 로 결과 확인
-
-
-
-</details>
-
-
-
 # 2. EC2 기초(2) 
 
 <details> <summary> 1. EC2 와 다른 AWS 서비스들 </summary>
@@ -195,55 +124,6 @@ vi index.html
 
 </details>
 
-<details> <summary> 4. AMI를 통한 Backup/Scale Up 실습 </summary>
-
-## 4. AMI를 통한 Backup/Scale Up 실습
-
-### AMI 만들기
-- 현재 EC2의 AMI를 만들어 Backup하기
-
-1. 이미지 생성 버튼 
-![image](https://user-images.githubusercontent.com/28394879/136926967-9a4d113a-a2c0-4e6d-bfd1-7339dd3f4651.png)
-
-2. 입력 후 생성 
-![image](https://user-images.githubusercontent.com/28394879/136927295-177b0a95-9bfd-4b3c-8a21-e28f47daeb92.png)
-
-
-
-
-### 새로운 EC2 실행하기
-- 기존의 EC2보다 더 좋은 성능의 EC2를 기존의 AMI로 실행하기
-
-1. AMI 탭 클릭
-2. 사용할 AMI이미지 선택 후 시작하기 버튼 
-![image](https://user-images.githubusercontent.com/28394879/136928114-47a15a1f-d595-4785-a2de-b33191e3c0a6.png)
-
-3. 원하는 인스턴스 종류 선택후 다음
-![image](https://user-images.githubusercontent.com/28394879/136928252-5806df8e-6f9d-4a2b-b96c-d626aac85013.png)
-
-4. 인스턴스 구성은 지금은 따로안하고 다음:스토리지 추가 버튼 클릭
-5. 다음:태그 추가 버튼 클릭
-6. 태그 추가 후 다음:보안 그룹 구성 버튼 클릭
-![image](https://user-images.githubusercontent.com/28394879/136928697-2aec2eb2-5b30-4f46-b82f-fd65f7aedf0b.png)
-7. 기존 보안 그룹 선택 후 검토 및 시작 
-![image](https://user-images.githubusercontent.com/28394879/136928831-d19dd3ac-a0dc-4744-ab7b-eb7becef8d8d.png)
-
-8. 범용 SSD 에서 부팅 설정 후 다음
-![image](https://user-images.githubusercontent.com/28394879/136928967-24269dd7-d423-433d-ae56-7a0de6636f65.png)
-
-9. 시작하기 버튼 클릭 
-
-10. 기존 키페어 선택 후 인스턴스 시작
-![image](https://user-images.githubusercontent.com/28394879/136929153-05fe4144-8d2a-433f-8657-adbdc16b45da.png)
-
-11. 기존 인스턴스 종료
-![image](https://user-images.githubusercontent.com/28394879/136929511-70db58ac-c364-4b0f-90bf-3cd67d7049ec.png)
-
-
-### 동작 확인하기 
-- 새로운 인스턴스의 아이피로 접속해보면 이전에 만들어 두었던 helloworld apache 서버가 잘 동작 하는 것을 알 수 있다.
-
-</details>
 
 
 # 3. Security Group
@@ -289,46 +169,6 @@ vi index.html
 ![image](https://user-images.githubusercontent.com/28394879/136936510-05742607-16dc-4031-b1b4-972aa13cad5e.png)
 
 </details>
-
-<details> <summary> 3. Security Group 실습 </summary>
-
-## 3. Security Group 실습
-
-- Security Group 생성하기
-  - 여러 포트와 소스를 지정해서 만들기
-- 기존의 적용된 SG를 새로운 SG로 대체하기
-  - 기존의 EC2의 환경에서 어떻게 변화되었는지 확인 
-
-1. 인스턴스 시작하기
-2. 나의 AMI 선택 
-3. 인스턴스 유형 t2.micro선택
-4. 다음: 스토리지 추가 버튼 클릭
-5. GIB 10으로 설정후 다음:태그 추가 버튼 클릭
-6. Name: lecture-test 태그추가 후 다음:보안 그룹 구성 버튼 클릭 
-7. 보안그룹 구성
-![image](https://user-images.githubusercontent.com/28394879/136937587-a4f8a115-07da-412d-8b5a-8147f9c66cfa.png)
-8. 시작하기
-9. 기존 키 페어 선택 후 인스턴스 시작 
-
-### 아웃바운드 실습 
-1. 아웃바운드 규칙 
-![image](https://user-images.githubusercontent.com/28394879/136938194-a360f828-9999-4a88-9ff0-0190804c89e4.png)
-2.  Edit outbound rules 버튼 클릭
-3.  기존에 있는 outbound 삭제 후 규칙저장
-4.  lecture-test2 ip로 접속해보았지만 아웃바운드 규칙이 없음에도 불구하고 접속 이 잘 됨 ==> stateful 특징 덕분에 
-
-
-### 인바운드 실습
-1. 보안그룹 -> 인바운드 규칙 
-2. Edit inbound rules 버튼 클릭
-3. SSH 제외한 모든 inbound 제거 후 규칙저장
-4. lecture-test2 ip로 접속해보았지만, 접속이 안되는것을 알 수 있음
-
-
-
-
-</details>
-
 
 # 4. ELB
 
@@ -412,65 +252,6 @@ vi index.html
 
 </details>
 
-<details> <summary> 5. ELB 실습 </summary>
-
-## 5. ELB 실습
-
-- 2개의 다른 AZ에 웹서버 생성하기
-  - 2개의 웹서버를 생성하고 각각 AZ를 알 수 있도록 내용을 표시
-- Application LoadBalancer를 적용해 트래픽이 분산되는지 확인하기
-  - 매번 갱신때마다 다른 AZ로 표시되는지 확인하기
-- Sticky Session 확인
-  - Sticky Session이 동작하는지 확인하기 
-
-
-1. 인스턴스 시작
-2. 나의 AMI중에 lecture-test 선택
-3. t2.micro InstanceType 선택
-4. 서브넷설정을 2a로 설정
-5. 태그 Name: InstanceA
-6. 보안그룹 까지 다음
-7. lecture-test 보안그룹 선택
-8. "마그네틱을 이 인스턴스의 부트 볼륨으로 계속 사용" 선택
-9. 1~7번 한번더 반복해서 서브넷설정을 2c로 새로 인스턴스 생성 
-10. InstanceA, InstanceC 에 각각 접속해서 /var/www/html/index.html을 I am instance A, I am instance C로 변경 
-11. 로드밸런서 -> Load balancer 생성 
-12. Application Load Balancer Create 
-13. 이름, Network mapping 설정 
-![image](https://user-images.githubusercontent.com/28394879/137293757-1e2c63e0-33f1-4016-b25d-54389c486b4e.png)
-
-14. Security groups 설정
-![image](https://user-images.githubusercontent.com/28394879/137294000-9675bd37-49e6-41eb-8549-705f491bc18f.png)
-
-
-15. Listeners and routing에서 Create target group버튼 클릭
-16. Basic configuration (사진은 잘못됐고, Target Type을 Instance로 해야됨)
-![image](https://user-images.githubusercontent.com/28394879/137294674-2f4f9d1a-7db9-4228-89aa-afecf7d2c530.png)
-
-17. Health checks
-![image](https://user-images.githubusercontent.com/28394879/137294844-cae94995-fe02-4fa7-8959-29913f264fa5.png)
-
-18. target을 instanceA,C 으로 등록
-
-19. 방금 만든 target group 선택후 create Load balancer
-20. 로드밸런서의 DNS이름으로 접속 시도 -> A, C 계속 번갈아 뜨는것을 확인 
-
-21. 대상 그룹에서 방금 지정한 lecture-test2 그룹에서 Attribute선택
-22. Attribute Edit
-23. Stickiness enable 후 저장 
-![image](https://user-images.githubusercontent.com/28394879/137296411-f7e0673e-0d49-4b22-9e0b-f26a3e73caea.png)
-24. DNS로 접속해보면 10초동안은 같은 서버로 접속되는것을 확인
-
-
-
-
-
-
-
-
-</details>
-
-
 
 
 # 5. Auto Scaling
@@ -519,63 +300,3 @@ vi index.html
 
 </details>
 
-<details> <summary> 3. Autoscaling 실습 </summary>
-
-## 3. Autoscaling 실습
-
-- Auto Scaling group 생성
-  - Launch Configuration(web서버) 및 Capacity 설정
-- 인스턴스 변화에 따른 Autoscaling 적용 확인
-  - 인스턴스가 종료되었을 때 어떻게 변화하는지 확인 
-
-
-### 1. IAM 생성
-1. IAM 서비스 
-2. 액세스 관리 -> 역할 
-3. 역할 만들기 
-4. EC2 클릭 후 다음
-5. 정책 필터에 "S3" 검색 후 "AmazonS3FullAccess" 선택 후 다음
-6. 태그 "purpose : lecture_as_test" 생성 후 다음 
-7. 역할이름: s3_fullaccess_as_test, 역할설명: 역할이름과 동일 입력 후 만들기 
-
-
-### 2. S3 버킷 생성 
-1. S3 서비스 
-2. 버킷 -> 버킷 만들기 
-3. 버킷이름: 맘대로 ( 글로벌한 유니크한 이름이라서 각자 지으면됨: skd-dte-as-test ) 지정 후 생성 
-4. 생성된 버킷 클릭
-5. 업로드 -> index.html 업로드 
-
-
-### 3. Auto Scaling 생성
-1. EC2 서비스
-2. Auto Scaling -> 시작 구성 
-3. 시작 구성 생성
-4. 시작 구성 이름: as-test
-5. AMI 아무거나 선택
-6. 인스턴스: t2.micro
-7. 추가구성 - 선택사항 -> IAM 인스턴스: s3_fullaccess_as_test
-8. 추가구성 - 선택사항 -> 고급 세부 정보
-![image](https://user-images.githubusercontent.com/28394879/137883117-d5d701d1-90b4-4b5e-8834-4b94a09aaa8a.png)
-9. 스토리지: 마그네틱(표준)
-10. 보안그룹: 기존 보안그룹 (default로 만든거 아무거나)
-11. 키 페어: 기존 키페어
-12. 생성완료
-
-### 4. Load Balancer 생성 
-1. 로드밸런서 -> Load Balancer 생성
-2. Application Load Balancer 
-3. 이름: as-test-elb
-4. 가용영역: 2a, 2c -> 다음
-5. 다음
-6. 보안그룹: 기존 보안 그룹 
-7. 라우팅구성 
-![image](https://user-images.githubusercontent.com/28394879/137885653-6b053f3c-da49-4545-a8de-8435308b6808.png)
-8. 다음, 다음 생성 완료 
-
-### 5. Auto Scaling 그룹 생성
-1. Auto Scaling -> Auto Scaling 그룹 
-2. Auto Scaling 그룹 생성 
-3. 
-
-</details>
