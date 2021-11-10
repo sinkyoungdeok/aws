@@ -300,3 +300,43 @@
 
 </details>
 
+
+# 6. VPC
+
+<details> <summary> 1. VPC란? </summary>
+
+## 1. VPC란?
+
+- Amazon Virtual Private Cloud(VPC)를 사용하면 AWS 클라우드에서 **논리적으로 격리된 공간**을 프로비저닝 하여 고객이 정의하는 **가상 네트워크**에서 AWS 리소스를 시작할 수 있다.   
+- **IP 주소 범위 선택, 서브넷 생성, 라우팅 테이블 및 네트워크 게이트 구성** 등 가상 네트워킹 환성을 완벽하게 제어할 수 있다. 
+- VPC에서 IPv4와 IPv6를 모두 사용하여 리소스와 애플리케이션에 안전하고 쉽게 액세스 할 수 있다.
+
+- Default VPC
+  - 계정 생성 시 자동으로 셋업 되어 있음(모든 리전에)
+  - 모든 서브넷의 인터넷 접근이 가능함
+  - EC2가 퍼블릭 IP와 Private IP 모두 가지고 있음
+  - 삭제시 복구 불가
+- Custom VPC
+  - 새로 만들어야 함
+  - Default VPC의 특징을 가지고 있지 않음 
+
+- VPC를 사용하여 할 수 있는 일들
+  - EC2 실행 가능
+  - 서브넷을 구성 가능
+  - 보안 설정(Ip block, 인터넷에 노출되지 않은 EC2 구성 등) 가능
+- VPC Peering: VPC간에 연결
+  - Transitive Peering 불가능: 한 다리 건너 연결 되어 있다고 해서 Peering이 된 것이 아님
+- VPC Flow Log
+  - VPC의 로그를 CloudWatch에 저장 가능
+- IP 대역 지정 가능
+- Region에 하나: 다른 Region으로 확장 불가능 
+
+</details>
+
+<details> <summary> 2. VPC의 구성요소 </summary>
+
+</details>
+
+<details> <summary> 3. VPC 만들기 실습 </summary>
+
+</details>
