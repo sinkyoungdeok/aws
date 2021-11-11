@@ -421,3 +421,46 @@
   - S3, DynamoDB 지원
 
 </details>
+
+
+
+# 7. 고가용성과 장애내구성의 차이는? - 클라우드 관련 개념/용어
+
+<details> <summary> 1. 고가용성과 장애내구성의 차이는? </summary>
+
+## 1. 고가용성과 장애내구성의 차이는?
+
+- 고가용성(High Availability, HA): 장애 상황을 해결하고 서비스를 지속할 수 있는 능력
+  - 장애 상황을 위한 준비가 필요
+- 장애 내구성 or 내결함성(Fault Tolerance): 장애 상황에도 서비스를 지속할 수 있는 능력
+  - 장애 상황에 영향을 받지 않는 아키텍처가 필요 
+
+![image](https://user-images.githubusercontent.com/28394879/141256455-d986a851-5aba-4ec0-871f-f9ea4cb91206.png)
+
+
+</details>
+
+<details> <summary> 2. 재해 복구 </summary>
+
+## 2. 재해 복구
+
+- 재해 복구(disaster recovery)
+  - 말 그대로 장애 상황을 복구하는 것
+
+
+</details>
+
+<details> <summary> 3. 확장성/탄력성 </summary>
+
+## 3. 확장성/탄력성
+
+![image](https://user-images.githubusercontent.com/28394879/141257750-4bbd0946-33c1-4e09-b308-ecc6bc9529a5.png)
+- 확장성(Scalable): 쉽고 빠르게 규모를 늘릴 수 있는 능력
+  - 주로 수요에 따라 컴퓨팅 파워 혹은 용량 확장 
+
+
+![image](https://user-images.githubusercontent.com/28394879/141257658-d3bb6d6f-9423-4135-a2e6-27b39610924a.png)
+- 탄력성(Elastic): 수요에 따라 컴퓨팅 파워/용량을 확장하거나 축소할 수 있는 능력
+  - 불필요한 자원을 사용하지 않고 비용 최적화에 필수적인 능력 
+
+</details>
