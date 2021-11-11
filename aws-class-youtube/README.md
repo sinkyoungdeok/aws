@@ -404,4 +404,20 @@
 - Public Subnet에 위치해야 함
 
 
+### VPC Endpoint
+- VPC 엔드포인트를 통해 인터넷 게이트웨이, NAT 디바이스, VPN 연결 또는 AWS Direct Connect 연결을 필요로 하지 않고 AWS PrivateLink 구동 지원 AWS 서비스 및 VPC 엔드포인트 서비스에 **비공개**로 연결할 수 있다.
+- VPC의 인스턴스는 서비스의 리소스와 통신하는데 **퍼블릭 IP 주소를 필요로 하지 않다**
+- VPC와 기타 서비스 간의 트래픽은 **Amazon 네트워크를 벗어나지 않는다.**
+
+#### VPC Endpoint 종류
+
+![image](https://user-images.githubusercontent.com/28394879/141247694-0059b7ae-aa55-4f35-96e1-03e15351161e.png)
+- Interface Endpoint: ENI(Elastic Network Interface) 기반 
+  - Private ip 를 만들어 서비스로 연결시켜줌
+  - 많은 서비스들을 지원 (SQS, SNS, Kinesis, Sagemaker 등)
+
+![image](https://user-images.githubusercontent.com/28394879/141247612-e2e9ef57-147f-4889-81c2-c4b2d6ab6293.png)
+- Gateway Endpoint: 라우팅 테이블에서 경로의 대상으로 지정하여 사용
+  - S3, DynamoDB 지원
+
 </details>
