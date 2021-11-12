@@ -586,3 +586,59 @@
   - 스냅샷의 복구는 항상 새로운 DB Instance를 생성하여 수행
 
 </details>
+
+<details> <summary> 9. RDS Multi AZ  </summary>
+
+## 9. RDS Multi AZ
+- 두 개 이상의 AZ에 걸쳐 데이터베이스를 구축하고 원본과 다른 DB (Standby)를 자동으로 동기화(Sync)
+  - SQL Server, Oracle, MySQL, PosgreSQL, MariaDB에서 지원
+  - Aurora의 경우 다중 AZ를 설계 단계에서 지원
+- 원본 DB의 장애 발생 시 자동으로 다른 DB가 원본으로 승격됨(DNS가 Standby DB로)
+- StandBy DB는 접근 불가능
+- 퍼포먼스의 상승 효과가 아닌 안정성을 위한 서비스
+
+![image](https://user-images.githubusercontent.com/28394879/141416100-f7134381-f45f-4a7e-bff1-5086adf3d94a.png)
+
+![image](https://user-images.githubusercontent.com/28394879/141416236-cf001439-dbfc-4645-8585-fd05c4d9ce81.png)
+
+</details>
+
+
+<details> <summary> 10. Read Replica (읽기 전용 복제본)  </summary>
+
+## 10. Read Replica (읽기 전용 복제본)
+- 원래 데이터베이스의 읽기 전용 복제본을 생성(Async)
+  - 쓰기는 원본 데이터베이스, 읽기는 복제본에서 처리하여 워크로드 분산
+  - Mysql, PostgreSQL, MariaDB, Oracle, Aurora에서 지원
+- 안정성이 아닌 퍼포먼스를 위한 서비스
+- 총 5개 까지 생성 가능
+- 각각의 복제본은 고유 DNS가 할당됨 => 접근 가능
+  - 원본 DB의 장애 발생 시 수동으로 DNS 변경이 필요함
+- 복제본 자체에 Multi-AZ 설정 가능(MySQL, MariaDB, PostgreSQL, and Oracle)
+- Multi-AZ DB에 Read Replica 설정 가능
+- 자동 백업이 활성화 되어 있어야 읽기 전용 복제본 생성 가능
+- 각 DB의 엔진 버전이 다를 수 있음
+
+![image](https://user-images.githubusercontent.com/28394879/141417131-c92bc7c6-8f64-4644-b2c0-7eb8e2bd2fb6.png)
+
+![image](https://user-images.githubusercontent.com/28394879/141417813-182df6ec-a81b-4055-8014-e63a4e3e7a9a.png)
+
+**위 사진에서 복제를 끊고 아래 사진처럼 구성할 수 있다**  
+
+![image](https://user-images.githubusercontent.com/28394879/141417884-68265c7c-25f5-497d-87de-1cae5cf13eb8.png)
+
+</details>
+
+<details> <summary> 11. RDS Multi Region  </summary>
+
+## 11. RDS Multi Region
+
+- 다른 리전에 지속적으로 동기화 시키는 DB클러스터를 생성
+  - Async 복제
+- 주로 로컬 퍼포먼스 혹은 DR(Disaster Recovery)시나리오로 활용
+- 각 리전별로 자동 백업 가능
+- 리전별로 Multi-AZ 가능
+
+![image](https://user-images.githubusercontent.com/28394879/141418965-f6e98382-43bf-4a2e-ba53-b7e2036d607c.png)
+
+</details>
