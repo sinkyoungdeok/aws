@@ -718,3 +718,17 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
     - 예: EventBridge 등과 연동하여 실시간으로 접근에 대한 알림을 받기 
 
 </details>
+
+# 11. Amazon Aurora
+
+<details> <summary> 1. Aurora란? </summary>
+
+## 1. Aurora란?
+
+- 고성능 상용 데이터베이스의 성능과 가용성에 오픈 소스 데이터베이스의 간편성과 비용 효율성을 결합하였으며 클라우드를 위해 구축된 MySQL 및 PostgreSQL 호환 관계형 데이터베이스이다.
+- 표준 MySQL 데이터베이스보다 최대 5배 빠르고 표준 PostgreSQL 데이터베이스보다 3배 빠르다.
+- 1/10의 비용으로 상용 데이터베이스의 보안, 가용성 및 안정성을 제공한다.
+- 하드웨어 프로비저닝, 데이터베이스 설정, 패치 및 백업과 같은 시간 소모적인 관리 작업을 자동화하는 Amazon Relational Database Service(RDS)에서 Amazon Aurora의 모든 것은 관리한다.
+ 
+
+</details>
