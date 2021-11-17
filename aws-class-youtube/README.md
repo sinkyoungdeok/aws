@@ -957,3 +957,97 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
   - 대시보드 및 알람 등 모니터링을 위한 서비스 제공
 
 </details>
+
+
+
+# 13. AWS 서비스로 Serverless 채팅서버 만들기 
+
+<details> <summary> 1. 아키텍쳐 다이어그램 </summary>
+
+## 1. 아키텍쳐 다이어그램
+
+![image](https://user-images.githubusercontent.com/28394879/142091595-82de0869-c2d0-46ac-989e-19a0ac0b0027.png)
+
+</details>
+
+<details> <summary> 2. API Gateway </summary>
+
+## 2. API Gateway
+
+- API형식으로 AWS 서비스에 접근할 수 있도록 해주는 서비스
+- REST API
+  - Lambda를 HTTP 프로토콜 기반의 REST API로 호출
+- Webocket
+  - Websocket 프로토콜로 Lambda를 호출
+  - Websocket으로 붙을 때 ConnectionId를 부여
+  - ConnectionID로 구분 된 클라이언트에 메시지 전송 가능 
+
+</details>
+
+<details> <summary> 3. Lambda </summary>
+
+## 3. Lambda
+
+- Servless 기반으로 코드를 실행할 수 있는 서비스
+- 총 4개의 Lambda
+  - 웹소켓 연결
+    - ConnectionID를 DynamoDB(유저목록)에 저장
+  - 웹소켓 연결 해제
+    - ConnectionID를 DynamoDB(유저목록)에서 삭제
+  - 채팅 입력
+    - DynamoDB (채팅)에 채팅 내용 기록
+    - 해당 방에 ConnectionID를 DynamoDB에서 불러와 채팅 내용을 API Gateway Websocket를 통해 전달
+  - 채팅 가져오기
+    - DynamoDB(채팅)에서 채팅 내용을 가져오기
+
+</details>
+
+
+<details> <summary> 4. DynamoDB </summary>
+
+## 4. DynamoDB
+
+- Key-Value 기반의 완전관리 Document DB
+- Serverless
+- 총 2개의 테이블
+  - 채팅 메시지: 채팅 내용을 저장
+  - 유저 목록: 채팅방에 접속된 유저들의 ConnectionID를 저장
+
+</details>
+
+<details> <summary> 5. S3 </summary>
+
+## 5. S3
+
+- Simple Storage Service
+  - 객체 스토리지 서비스
+  - Static Web Hosting(정적 웹 호스팅 가능)
+
+</details>
+
+<details> <summary> 6. 클라이언트 </summary>
+
+## 6. 클라이언트
+
+- React 기반
+- 간단한 채팅 UI를 갖춘 클라이언트 
+- Websocket/HTTP 프로토콜로 API에 접근
+
+</details>
+
+<details> <summary> 7. 진행 순서 </summary>
+
+## 7. 진행 순서
+
+- IAM Role 생성
+- API Gateway 생성
+- DynamoDB 생성
+- Lambda 생성
+  - API Gateway와 연동
+- 클라이언트 테스트
+- 번회: Serverless 로 만들어보기 
+
+</details>
+
+
+
