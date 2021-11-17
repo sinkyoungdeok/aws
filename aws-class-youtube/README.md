@@ -1049,5 +1049,94 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
 
 </details>
 
+# 14. SES vs SNS vs SQS
+
+<details> <summary> 1. SES </summary>
+
+## 1. SES
+
+### 용어
+- Amazon Simple Email Service(SES)는 개발자가 모든 애플리케이션 안에서 이메일을 보낼 수 있는 경제적이고, 유연하며, 확장 가능한 이메일 서비스이다.
+- SES를 빠르게 구성하여 트랜잭션, 마케팅 또는 대량 이메일 커뮤니케이션을 포함한 다수의 이메일 사용 사례를 지원할 수 있다.
+
+### 특징
+- Email을 보내거나 받을 수 있는 서비스
+- 이메일을 받을 때 여러 방법으로 처리 가능
+  - Lambda 호출
+  - SNS 호출
+  - S3에 이메일 저장
+- 대량의 이메일을 보내기 위해서는 샌드박스 모드 해제 필요(Aws Support 센터)
 
 
+</details>
+
+<details> <summary> 2. SNS </summary>
+
+## 2. SNS
+
+### 용어
+- Amazon Simple Notification Service
+- 애플리케이션 간 (A2A) 및 애플리케이션과 사용자 간(A2P) 통신 모두를 위한 완전관리형 메시징 서비스이다. 
+
+### 특징
+- Pub/Sub 기반의 메시징 서비스
+  - 하나의 토픽을 여러 주체가 구독
+    - 토픽에 전달된 내용을 구독한 모든 주체가 전달받아 처리
+- 다양한 프로토콜로 메시지 전달 가능
+  - 이메일
+  - HTTP(S)
+  - SQS
+  - SMS
+  - Lambda
+- 하나의 메시지를 여러 서비스에서 처리
+
+### Pub/Sub
+![image](https://user-images.githubusercontent.com/28394879/142126896-e96398d7-2b05-411c-8c38-e6dd61105ff2.png)
+
+
+### 전달 대상
+![image](https://user-images.githubusercontent.com/28394879/142127030-d43b82d2-d3d6-4c5f-b98f-8ddde8b00e77.png)
+
+
+### Fan Out Architecture
+![image](https://user-images.githubusercontent.com/28394879/142127118-07352042-2410-4fc3-8218-aa5709db8aa9.png)
+
+</details>
+
+<details> <summary> 3. SQS </summary>
+
+## 3. SQS
+
+### 용어
+- Amazon Simple Queue Service
+- 마이크로 서비스, 분산 시스템 및 서버리스 애플리케이션을 쉽게 분리하고 확장할 수 있도록 지원하는 완전관리형 메시지 대기열 서비스이다. 
+
+### 특징
+- AWS에서 제공하는 큐 서비스
+  - 다른 서비스에서 사용할 수 있도록 메시지를 잠시 저장하는 용도
+  - 최대 사이즈: 256kb, 최대 14일까지 저장 가능
+- 주로 AWS 서비스들의 느슨한 연결을 수립하려 상요
+- 하나의 메시지를 한번만 처리
+- AWS에서 제일 오래된 서비스
+
+### SQS의 필요성  
+![image](https://user-images.githubusercontent.com/28394879/142127504-d54d3b24-e6bf-42fd-9105-baac740324b5.png)
+
+- 위의 경우에는 EC2가 죽었을 경우 별도의 복구나 조치를 취할 수 없음. 
+
+![image](https://user-images.githubusercontent.com/28394879/142127604-8edf8b84-30e5-49a3-bf4f-61faaa617956.png)
+- 인코딩 서버들중에 먼저뺀 애가 처리하는방법임. (하나의 메시지는 하나의 EC2 인코딩만 처리)
+- 장점1) 인코딩 서버가 전체가 다 죽더라도, SQS에 메시지가 저장되어있기때문에 인코딩서버가 다시 살아났을때 남아있는 메시지부터 처리할 수 있기 때문에 하나의서비스에서 하나의 서비스로 안전하게 메시지를 보낼 수 있다. 
+- 장점2) EC2들이 Lambda로 바껴도 앞단의 Lambda는 바뀌지 않아도 된다. (독립적인 아키텍처를 구축할 수있다 = 디커플링)
+
+
+</details>
+
+
+<details> <summary> 4. SNS vs SQS </summary>
+
+## 4. SNS vs SQS
+
+![image](https://user-images.githubusercontent.com/28394879/142128066-4a0b5e17-65b7-46c7-bf87-49d40477beb1.png)
+
+</details>
