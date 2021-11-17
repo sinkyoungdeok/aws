@@ -876,7 +876,7 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
 
 # 12. CloudWatch vs CloudTrail 
 
-<details> <summary> 1. CloudWatch </sumamary>
+<details> <summary> 1. CloudWatch </summary>
 
 ## 1. CloudWatch
 
@@ -925,7 +925,7 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
 
 </details>
 
-<details> <summary> 2. CloudTrail </sumamary>
+<details> <summary> 2. CloudTrail </summary>
 
 ## 2. CloudTrail
 
@@ -943,7 +943,7 @@ Elastic IP Address는 고정된 public IP로 ENI에 붙일 수 있는 서비스�
 
 </details>
 
-<details> <summary> 3. CloudTrail vs CloudWatch </sumamary>
+<details> <summary> 3. CloudTrail vs CloudWatch </summary>
 
 ## 3. CloudTrail vs CloudWatch
 
